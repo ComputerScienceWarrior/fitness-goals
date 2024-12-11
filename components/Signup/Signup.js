@@ -42,7 +42,7 @@ const Signup = ({ navigation }) => {
                 placeholder="Confirm password"
                 onChangeText={setPasswordConfirmation}
             />
-            {password != passwordConfirmation && passwordConfirmation != '' ? <Text style={styles.alertText}>Passwords do not match!</Text> : null }
+            { password != passwordConfirmation && passwordConfirmation != '' ? <Text style={styles.alertText}>Passwords do not match!</Text> : null }
             <TextInput 
                 style={styles.textInputs}
                 value={email}
