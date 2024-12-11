@@ -7,16 +7,34 @@ const Signup = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const userSignUp = () => {
+    const userSignUp = async () => {
         if (username.length < 3) {
             console.log('Username is too short')
         } else if (password != passwordConfirmation){
             console.log('Passwords do not match')
         } else{
-            console.log(`validating User ${username}...Success!`)
-            navigation.navigate('Home')
+            const userData = { 
+                username: username,
+                password: password,
+                email: email,
+            }
+
+            try {
+                setLoading(true);
+                const response = await axios.post('http://192.168.12.175:/users', userData);
+                console.log('User created successfully', response.data);
+                setLoading(false);
+                navigation.navigate('Home');
+            } catch (err) {
+                setLoading(false);
+                setError('Error creating user: ' + err.response?.data?.message || err.message);
+                console.error('Error creating user:', err);
+            }
         }
+
     }
 
     return(
@@ -49,8 +67,12 @@ const Signup = ({ navigation }) => {
                 placeholder="Enter Email Address"
                 onChangeText={setEmail}
             />
-            <TouchableOpacity onPress={() => userSignUp()}>
-                <Text>Create Account</Text>
+            {error && <Text style={styles.alertText}>{error}</Text>}
+            <TouchableOpacity 
+                onPress={() => userSignUp()}
+                style={styles.createAccountButton}
+            >
+                { loading ? <Text style={styles.createAccountButtonText}>Loading...</Text> : <Text style={styles.createAccountButtonText}>Create Account</Text> }
             </TouchableOpacity>
         </View>
     );
