@@ -20,6 +20,18 @@ const styles = StyleSheet.create({
     },
     startButtonText: {
         textAlign: 'center'
+    },
+    loginButton: {
+        padding: 20,
+        backgroundColor: 'green',
+        width: 300,
+        marginTop: 10,
+        borderRadius: 10,
+    },
+    loginButtonText: {
+        color: 'white',
+        textAlign: 'center',
+        letterSpacing: 1
     }
 });
 
