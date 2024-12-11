@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from './Styles';
+import axios from "axios";
 
 const Signup = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ const Signup = ({ navigation }) => {
 
             try {
                 setLoading(true);
-                const response = await axios.post('http://192.168.12.175:/users', userData);
+                const response = await axios.post('http://192.168.12.175:/users/signup', userData);
                 console.log('User created successfully', response.data);
                 setLoading(false);
                 navigation.navigate('Home');
