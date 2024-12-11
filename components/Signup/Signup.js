@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import styles from './Styles';
 
 const Signup = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -20,26 +21,30 @@ const Signup = ({ navigation }) => {
 
     return(
         <View>
-            <Text>Sign Up</Text>
+            <Text style={styles.header}>Sign Up</Text>
             <TextInput 
+                style={styles.textInputs}
                 placeholder="Create a username (between 4 - 15 characters)"
                 value={username}
                 onChangeText={setUsername}
             />
             <TextInput
+                style={styles.textInputs}
                 secureTextEntry 
                 value={password}
                 placeholder="Enter a unique password"
                 onChangeText={setPassword}
             />
             <TextInput
+                style={styles.textInputs}
                 secureTextEntry 
                 value={passwordConfirmation}
                 placeholder="Confirm password"
                 onChangeText={setPasswordConfirmation}
             />
-            {password != passwordConfirmation ? <Text>Passwords do not match!</Text> : null }
+            {password != passwordConfirmation && passwordConfirmation != '' ? <Text style={styles.alertText}>Passwords do not match!</Text> : null }
             <TextInput 
+                style={styles.textInputs}
                 value={email}
                 placeholder="Enter Email Address"
                 onChangeText={setEmail}
