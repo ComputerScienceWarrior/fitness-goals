@@ -17,7 +17,7 @@ const Login = ({ navigation }) => {
 
             if (response.status === 200) {
                 Alert.alert("Login successful!");
-                navigation.navigate('Home');
+                navigation.navigate('UserPage', { username: username });
             }
         } catch (error) {
             if (error.response && error.response.data) {
