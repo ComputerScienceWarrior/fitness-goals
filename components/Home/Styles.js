@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         borderRadius: 10,
         width: 300,
+        padding: 20
     },
     startButtonText: {
         textAlign: 'center'
