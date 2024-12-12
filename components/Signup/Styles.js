@@ -17,6 +17,18 @@ const styles = StyleSheet.create({
     alertText: {
         color: 'red'
     },
+    createAccountButton: {
+        padding: 10,
+        backgroundColor: 'green',
+        width: '80%',
+        margin: 'auto',
+        borderRadius: 10,
+    },
+    createAccountButtonText: {
+        color: 'white',
+        textAlign: 'center',
+        letterSpacing: 1
+    }
 })
 
 export default styles;
