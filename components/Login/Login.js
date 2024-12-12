@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from "axios";
+import * as SecureStore from 'expo-secure-store';
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -22,12 +23,16 @@ const Login = ({ navigation }) => {
         
         try {
             const response = await axios.post(`http://192.168.12.175:3000/login`, userData);
-
             if (response.status === 200) {
+                const { token } = response.data;
+                console.log('Token received:', token);
+                
+                await saveToken(token);
                 Alert.alert("Login successful!");
                 navigation.navigate('UserPage', { username: username });
             }
         } catch (error) {
+            console.log(error)
             if (error.response && error.response.data) {
                 Alert.alert("Login failed", error.response.data.message || "Please check your credentials and try again.");
             } else {
