@@ -6,6 +6,14 @@ const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const saveToken = async (token) => {
+        try {
+            await SecureStore.setItemAsync('jwt', token);
+        } catch (error) {
+            console.error("Error saving token", error);
+        }
+    };
+
     const userLogin = async () => {
         const userData = {
             username: username,
