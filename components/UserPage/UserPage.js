@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, SafeAreaView, Alert, TouchableOpacity } from "react-native";
 import fetchUserData from "../functions/fetchUserData";
 import User from "../User/User";
 import styles from "./Styles";
+import Spacer from "../extras/Spacer/Spacer";
+import logout from "../functions/logout";
 
 const UserPage = ({ route, navigation }) => {
     const [userData, setUserData] = useState(null);
@@ -21,7 +23,7 @@ const UserPage = ({ route, navigation }) => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {userData ? (
                 <>
                     <Text style={styles.header}>{route.params["username"]}'s Fitness Stats</Text>
@@ -30,7 +32,14 @@ const UserPage = ({ route, navigation }) => {
             ) : (
                 <Text style={styles.loading}>Loading...</Text>
             )}
-        </View>
+            <Spacer margin={60} />
+            <TouchableOpacity 
+                style={styles.logoutButton}
+                onPress={() => logout(navigation)}
+            >
+                <Text style={styles.logoutButtonText}>Logout</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     );
 };
 
