@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'beige',
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -10,28 +9,41 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     greeting: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 30,
+        marginBottom: 20,
+        padding: 20,
+        fontWeight: 'bold'
     },
     startButton: {
-        backgroundColor: 'lightblue',
+        borderWidth: 2,
+        borderColor: 'green',
         borderRadius: 10,
         width: 300,
-        padding: 20
+        padding: 20,
+        margin: 'auto',
     },
     startButtonText: {
-        textAlign: 'center'
+        color: 'green',
+        textAlign: 'center',
+        letterSpacing: 1,
+        fontWeight: 'bold',
+        fontSize: 20,
     },
     loginButton: {
         padding: 20,
-        backgroundColor: 'green',
+        borderWidth: 2,
+        borderColor: 'blue',
         width: 300,
-        marginTop: 10,
         borderRadius: 10,
+        margin: 'auto',
     },
     loginButtonText: {
-        color: 'white',
+        color: 'blue',
         textAlign: 'center',
-        letterSpacing: 1
+        letterSpacing: 1,
+        fontWeight: 'bold',
+        fontSize: 20,
     }
 });
 

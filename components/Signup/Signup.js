@@ -28,7 +28,7 @@ const Signup = ({ navigation }) => {
                 const response = await axios.post('http://192.168.12.175:3000/users/signup', userData);
                 console.log('User created successfully', response.data);
                 setLoading(false);
-                navigation.navigate('UserPage', { username: username });
+                navigation.navigate('User Page', { username: username });
             } catch (err) {
                 setLoading(false);
                 setError('Error creating user: ' + err.response?.data?.message || err.message);

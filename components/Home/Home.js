@@ -15,6 +15,7 @@ const Home = ({ navigation }) => {
                 >
                     <Text style={styles.startButtonText}>Start Here</Text>
                 </TouchableOpacity>
+                <Spacer padding={20} margin={20} />
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Login')}
                     style={styles.loginButton}
