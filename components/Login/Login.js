@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
+import styles from "./Styles";
+import Spacer from '../extras/Spacer/Spacer';
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -39,21 +41,25 @@ const Login = ({ navigation }) => {
     }
 
     return(
-        <View>
-            <Text>Login</Text>
+        <View style={styles.loginFormContainer}>
+            <Text style={styles.headerText}>Welcome Back!</Text>
             <TextInput
+            style={styles.usernameInput}
                 placeholder="Enter Username"
                 onChangeText={setUsername}
             />
+            <Spacer padding={10} margin={10} />
             <TextInput
+                style={styles.passwordInput}
                 secureTextEntry={true}
                 placeholder="Enter Password"
                 onChangeText={setPassword}
             />
             <TouchableOpacity
+                style={styles.loginButton}
                 onPress={() => userLogin()}
             >
-                <Text>Login</Text>
+                <Text style={styles.loginButtonText}>Login</Text>
             </TouchableOpacity>
         </View>
     );
