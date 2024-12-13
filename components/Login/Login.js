@@ -24,12 +24,9 @@ const Login = ({ navigation }) => {
         try {
             const response = await axios.post(`http://192.168.12.175:3000/login`, userData);
             if (response.status === 200) {
-                const { token } = response.data;
-                console.log('Token received:', token);
-                
-                await saveToken(token);
+                await saveToken(response.data["token"]);
                 Alert.alert("Login successful!");
-                navigation.navigate('UserPage', { username: username });
+                navigation.navigate('UserPage', { username: username, userId: response.data["userId"] });
             }
         } catch (error) {
             console.log(error)
