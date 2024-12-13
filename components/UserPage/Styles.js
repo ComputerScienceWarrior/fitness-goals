@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import logout from "../functions/logout";
 
 const styles = StyleSheet.create({
     container: {
@@ -15,6 +16,15 @@ const styles = StyleSheet.create({
     loading: {
         fontSize: 16,
         color: "gray",
+    },
+    logoutButton: {
+        marginTop: '100%'
+
+    },
+    logoutButtonText:{
+        color: 'red',
+        fontSize: 16,
+        letterSpacing: 1,
     },
 });
 
