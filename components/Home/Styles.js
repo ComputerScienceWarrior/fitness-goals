@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
     },
     greeting: {
         textAlign: 'center',
-        fontSize: 24,
+        fontSize: 30,
+        marginBottom: 20,
+        padding: 20,
+        fontWeight: 'bold'
     },
     startButton: {
         borderWidth: 2,
@@ -24,6 +27,8 @@ const styles = StyleSheet.create({
         color: 'green',
         textAlign: 'center',
         letterSpacing: 1,
+        fontWeight: 'bold',
+        fontSize: 20,
     },
     loginButton: {
         padding: 20,
@@ -36,7 +41,9 @@ const styles = StyleSheet.create({
     loginButtonText: {
         color: 'blue',
         textAlign: 'center',
-        letterSpacing: 1
+        letterSpacing: 1,
+        fontWeight: 'bold',
+        fontSize: 20,
     }
 });
 
