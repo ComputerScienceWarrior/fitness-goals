@@ -6,19 +6,22 @@ import UserPage from './components/UserPage/UserPage';
 import NewWorkoutForm from './components/NewWorkout/NewWorkoutForm';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Stack = createStackNavigator()
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={Home} />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
-        <Stack.Screen name="User Page" component={UserPage} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Login" component={Login} />
+        <Drawer.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
+        <Drawer.Screen name="User Page" component={UserPage} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
