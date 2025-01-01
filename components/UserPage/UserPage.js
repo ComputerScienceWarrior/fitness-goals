@@ -1,42 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import fetchUserData from "../functions/fetchUserData";
+import fetchUserData from '../functions/fetchUserData';
+import * as SecureStore from 'expo-secure-store';
 import User from "../User/User";
 import styles from "./Styles";
 import Spacer from "../extras/Spacer/Spacer";
 import logout from "../functions/logout";
 
-const UserPage = ({ route, navigation }) => {
+const UserPage = ({ navigation }) => {
     const [userData, setUserData] = useState(null);
-    
+
     useEffect(() => {
-        const loadUserData = async () => {
+        const loadCurrentUser = async () => {
             try {
-                const data = await fetchUserData(`users/${route.params["userId"]}`);
-                setUserData(data);
+                const token = await SecureStore.getItemAsync("jwt");
+                if (token) {
+                    const data = await fetchUserData();
+                    setUserData(data);
+                } else {
+                    throw new Error("No token found");
+                }
             } catch (error) {
-                console.log(error)
-            }
+                console.log(error);
+                navigation.navigate("Login");
+            };
         };
 
-        loadUserData();
+        loadCurrentUser();
     }, []);
 
     return (
         <SafeAreaView style={styles.container}>
             {userData ? (
-                <>
-                    <Text style={styles.header}>{route.params["username"]}'s Fitness Stats</Text>
-                    <User username={route.params["username"]} userData={userData} /> 
-                    <TouchableOpacity onPress={() => navigation.navigate('NewWorkoutForm')} style={styles.addWorkoutButton}>
-                        <Text style={styles.addWorkoutText}>Add Workout</Text>
-                    </TouchableOpacity>
-                </>
+            <>
+                <Text style={styles.header}>{userData.username}'s Fitness Stats</Text>
+                <User username={userData.username} userData={userData} />
+                <TouchableOpacity
+                onPress={() => navigation.navigate("NewWorkoutForm")}
+                style={styles.addWorkoutButton}
+                >
+                <Text style={styles.addWorkoutText}>Add Workout</Text>
+                </TouchableOpacity>
+            </>
             ) : (
                 <Text style={styles.loading}>Loading...</Text>
             )}
             <Spacer margin={60} />
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={styles.logoutButton}
                 onPress={() => logout(navigation)}
             >
