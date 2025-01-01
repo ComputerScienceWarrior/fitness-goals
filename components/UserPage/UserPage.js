@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, SafeAreaView, Alert, TouchableOpacity } from "react-native";
+import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import fetchUserData from "../functions/fetchUserData";
 import User from "../User/User";
 import styles from "./Styles";
@@ -28,6 +28,9 @@ const UserPage = ({ route, navigation }) => {
                 <>
                     <Text style={styles.header}>{route.params["username"]}'s Fitness Stats</Text>
                     <User username={route.params["username"]} userData={userData} /> 
+                    <TouchableOpacity onPress={() => navigation.navigate('NewWorkoutForm')} style={styles.addWorkoutButton}>
+                        <Text style={styles.addWorkoutText}>Add Workout</Text>
+                    </TouchableOpacity>
                 </>
             ) : (
                 <Text style={styles.loading}>Loading...</Text>
