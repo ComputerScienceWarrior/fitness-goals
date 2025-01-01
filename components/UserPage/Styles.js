@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import logout from "../functions/logout";
 
 const styles = StyleSheet.create({
     container: {
@@ -26,6 +25,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
         letterSpacing: 1,
     },
+    addWorkoutButton: { 
+        borderColor: 'black',
+        borderWidth: 2,
+        borderStyle: 'solid',
+        borderRadius: 10,
+        padding: 10,
+        marginTop: 15,
+        width: 200,
+        backgroundColor: 'lightblue'
+    },
+    addWorkoutText: {
+        textAlign: 'center',
+        letterSpacing: 1,
+        fontWeight: 'bold',
+    }
 });
 
 export default styles;
