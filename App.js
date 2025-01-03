@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native';
 import Home from './components/Home/Home';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
@@ -17,20 +16,11 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={Home} />
-        <Stack.Screen name="Signup" component={Signup} />
+        <Drawer.Screen name="Signup" component={Signup} />
         <Drawer.Screen name="Login" component={Login} />
         <Drawer.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
         <Drawer.Screen name="User Page" component={UserPage} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
