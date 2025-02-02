@@ -6,6 +6,7 @@ import User from "../User/User";
 import styles from "./Styles";
 import Spacer from "../extras/Spacer/Spacer";
 import logout from "../functions/logout";
+import fetchWorkoutData from "../functions/fetchWorkoutData";
 
 const UserPage = ({ navigation }) => {
     const [userData, setUserData] = useState(null);
@@ -16,13 +17,14 @@ const UserPage = ({ navigation }) => {
                 const token = await SecureStore.getItemAsync("jwt");
                 if (token) {
                     const data = await fetchUserData();
+                    const projectData = await fetchWorkoutData(data.id);
                     setUserData(data);
+                    console.log("Project Data retrieved from current: ", projectData)
                 } else {
                     throw new Error("No token found");
                 }
             } catch (error) {
                 console.log(error);
-                navigation.navigate("Login");
             };
         };
 
@@ -39,7 +41,7 @@ const UserPage = ({ navigation }) => {
                 onPress={() => navigation.navigate("NewWorkoutForm")}
                 style={styles.addWorkoutButton}
                 >
-                <Text style={styles.addWorkoutText}>Add Workout</Text>
+                <Text style={styles.addWorkoutText}>Create a Workout</Text>
                 </TouchableOpacity>
             </>
             ) : (
