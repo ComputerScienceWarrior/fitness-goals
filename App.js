@@ -1,16 +1,19 @@
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as SecureStore from 'expo-secure-store';
+
 import Home from './components/Home/Home';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import UserPage from './components/UserPage/UserPage';
 import NewWorkoutForm from './components/NewWorkout/NewWorkoutForm';
-import { NavigationContainer } from '@react-navigation/native';
-import 'react-native-gesture-handler';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useEffect, useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
+import WorkoutPage from './components/WorkoutPage/WorkoutPage';
 import LoadingScreen from './components/extras/Spacer/LoadingScreen';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +32,7 @@ export default function App() {
     return (
       <NavigationContainer>
         <Drawer.Navigator>
-          <Drawer.Screen name="Loading" component={() => <LoadingScreen />} />
+          <Drawer.Screen name="Loading" component={LoadingScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     );
@@ -37,15 +40,28 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Signup" component={Signup} />
-        <Drawer.Screen name="Login" component={Login} />
-        <Drawer.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
-        {isAuthenticated && (
-          <Drawer.Screen name="User Page" component={UserPage} />
-        )}
-      </Drawer.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="Drawer" component={() => <DrawerNavigator isAuthenticated={isAuthenticated} />} />
+        <Stack.Screen name="WorkoutPage" component={WorkoutPage} />
+      </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+const DrawerNavigator = ({ isAuthenticated }) => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Signup" component={Signup} />
+      <Drawer.Screen name="Login" component={Login} />
+      
+      {/* Conditionally render these screens if the user is authenticated */}
+      {isAuthenticated && (
+        <>
+          <Drawer.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
+          <Drawer.Screen name="User Page" component={UserPage} />
+        </>
+      )}
+    </Drawer.Navigator>
   );
 };
