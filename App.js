@@ -55,11 +55,10 @@ const DrawerNavigator = ({ isAuthenticated }) => {
       <Drawer.Screen name="Signup" component={Signup} />
       <Drawer.Screen name="Login" component={Login} />
       
-      {/* Conditionally render these screens if the user is authenticated */}
       {isAuthenticated && (
         <>
           <Drawer.Screen name="NewWorkoutForm" component={NewWorkoutForm} />
-          <Drawer.Screen name="User Page" component={UserPage} />
+          <Drawer.Screen name="UserPage" component={UserPage} />
         </>
       )}
     </Drawer.Navigator>

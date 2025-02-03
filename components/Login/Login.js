@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
             if (response.status === 200) {
                 await saveToken(response.data["token"]);
                 Alert.alert("Login successful!");
-                navigation.navigate('User Page', { username: username, userId: response.data["userId"] });
+                navigation.navigate('UserPage', { username: username, userId: response.data["userId"] });
             }
         } catch (error) {
             console.log(error)

@@ -36,9 +36,9 @@ const Signup = ({ navigation }) => {
                 setLoading(true);
                 const response = await axios.post('http://192.168.12.175:3000/users/signup', userData);
                 if (response.status === 201) {
-                    await saveToken(response.data.token); // Save the token securely
+                    await saveToken(response.data.token);
                     Alert.alert("Signup successful!");
-                    navigation.navigate('User Page', { username: username, userId: response.data.user.id });
+                    navigation.navigate('UserPage', { username: username, userId: response.data.user.id });
                 }
             } catch (err) {
                 setLoading(false);
