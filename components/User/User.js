@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { View, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import styles from './styles'; // Import your styles here
+import styles from './styles';
 
-const User = (props) => {
+const User = ( props ) => {
     const [selectedWorkout, setSelectedWorkout] = useState('');
 
     const handleSelect = (selectedItem) => {
         setSelectedWorkout(selectedItem);
-        console.log("Selected workout:", selectedItem);
+        props.navigation.navigate('WorkoutPage', selectedWorkout);
     };
 
     const workoutOptions = props.workouts.map(workout => ({
@@ -17,7 +17,7 @@ const User = (props) => {
     }));
 
     return (
-        <View style={styles.container}>  {/* Use the container style */}
+        <View style={styles.container}>
             <Text style={styles.greetingText}>Hello, {props.username}!</Text>
             
             <RNPickerSelect
@@ -25,14 +25,10 @@ const User = (props) => {
                 items={workoutOptions}
                 placeholder={{ label: "Select a Workout", value: '' }}
                 style={{
-                    inputAndroid: styles.dropdown,  // Styles for Android
-                    inputIOS: styles.dropdown,     // Styles for iOS
+                    inputAndroid: styles.dropdown,
+                    inputIOS: styles.dropdown,
                 }}
             />
-            
-            {selectedWorkout && (
-                <Text style={styles.selectedText}>You selected: {selectedWorkout}</Text>
-            )}
         </View>
     );
 };

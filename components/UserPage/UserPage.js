@@ -43,6 +43,7 @@ const UserPage = ({ navigation }) => {
                             username={userData.username}
                             userData={userData}
                             workouts={workouts}
+                            navigation={navigation}
                         />
 
                         <TouchableOpacity
