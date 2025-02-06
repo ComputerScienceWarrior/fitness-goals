@@ -8,7 +8,7 @@ const User = ( props ) => {
 
     const handleSelect = (selectedItem) => {
         setSelectedWorkout(selectedItem);
-        props.navigation.navigate('WorkoutPage', selectedWorkout);
+        props.navigation.navigate('WorkoutPage', selectedItem);
     };
 
     const workoutOptions = props.workouts.map(workout => ({
