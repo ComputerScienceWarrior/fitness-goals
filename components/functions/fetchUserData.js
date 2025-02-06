@@ -2,7 +2,8 @@ import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import { Alert } from 'react-native';
 
-const fetchUserData = async (endpoint) => {
+const fetchUserData = async (endpoint = "current_user") => {
+    
     try {
         const token = await SecureStore.getItemAsync('jwt');
         if (token) {
@@ -11,14 +12,15 @@ const fetchUserData = async (endpoint) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(`response data: ${response.data["username"]}`)
             return response.data;
         } else {
             Alert.alert("Error", "No token found. Please log in again.");
+            throw new Error("No token found");
         }
     } catch (error) {
         console.error("Error fetching user data", error);
-        throw error; 
+        Alert.alert("Error", "Unable to fetch user data. Please try again.");
+        throw error;
     }
 };
 
